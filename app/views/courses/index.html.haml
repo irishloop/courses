@@ -2,13 +2,34 @@
 
 %h1 Courses
 
-.row
-  .col-md-1
-  %h3.col-md-2 Fall
-  %h3.col-md-2 Spring
-  %h3.col-md-2 Summer
+.row.row-eq-height
+  .col "Welcome!"
+  .col-md-2 Fall
+  .col-md-2 Spring
+  .col-md-2 Summer
+
+- @categories.each do |category|
+  .row.row-eq-height
+    .col.outline= category.name  
+    .col.outline.required
+      - @fall_courses.where(required: true).where(category_id: category).each do |course|
+        = course.title 
+    .col.outline.elective
+      - @fall_courses.where(required: false).where(category_id: category).each do |course |
+        = course.title  
+    .col.outline.required
+      - @spring_courses.where(required: false).where(category_id: category).each do |course |
+        = course.title  
+    .col.outline.elective
+      - @spring_courses.where(required: false).where(category_id: category).each do |course |
+        = course.title  
+    .col.outline.required
+      - @summer_courses.where(required: false).where(category_id: category).each do |course |
+        = course.title  
+    .col.outline.elective
+      - @summer_courses.where(required: false).where(category_id: category).each do |course |
+        = course.title
+      .w-100
 
 
-<br>
-
-<%= link_to 'New Course', new_course_path %>
+%h5= link_to 'New Course', new_course_path

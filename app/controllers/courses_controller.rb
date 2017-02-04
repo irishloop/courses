@@ -5,19 +5,11 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.includes(:semester)
+    @categories = Category.all
 
-    @required = @courses.where(required: true)
-    @electives = @courses.where(required: false)
-
-    @fall_required = @required.where(semesters: { name: 'Fall'})
-    @fall_electives = @electives.where(semesters: { name: 'Fall'})
-
-    @spring_required = @required.where(semesters: { name: 'Spring'})
-    @spring_electives = @electives.where(semesters: { name: 'Spring'})
-
-    @summer_required = @required.where(semesters: { name: 'Summer'})
-    @summer_electives = @electives.where(semesters: { name: 'Summer'})
-
+    @fall_courses = @courses.where(semesters: { name: 'Fall'})
+    @spring_courses = @courses.where(semesters: { name: 'Spring'})
+    @summer_courses = @courses.where(semesters: { name: 'Summer'})
   end
 
   # GET /courses/1
