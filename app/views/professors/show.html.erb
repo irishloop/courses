@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @professor.lastname %>
+</p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @professor.firstname %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @professor.status %>
+</p>
+
+<%= link_to 'Edit', edit_professor_path(@professor) %> |
+<%= link_to 'Back', professors_path %>
