@@ -71,31 +71,31 @@ p {
 
 // course listings
 
-.outline {
-  outline: solid;
-}
-
-.category {
-  vertical-align: middle;
-}
-
-.listing {
-  vertical-align: top;
-}
-
-.header {
-  text-align: center;
-  outline: solid;
+#courseListing {
+  border-width: 1px;
+  border-style: solid;
+  tr td.category {
+    vertical-align: center;
+    font-size: 1.4em;
+    background-color: gainsboro;
+  }
+  thead th {
+    text-align: center;
+    font-size: 1.2em;
+    border-style: solid;
+  }
+  tr td {
+    font-size: 0.7em;
+    border-style: solid;
+  }
 }
 
 .required {
   background-color: $red-light;
-  outline: solid;
 }
 
 .elective {
   background-color: $blue-light;
-  outline: solid;
 }
 
 // header

@@ -2,34 +2,40 @@
 
 %h1 Courses
 
-.row.row-eq-height
-  .col "Welcome!"
-  .col-md-2 Fall
-  .col-md-2 Spring
-  .col-md-2 Summer
+%table#courseListing
+  %tbody
+    %thead
+      %th 
+      %th{:colspan => 2} Fall
+      %th{:colspan => 2} Spring
+      %th{:colspan => 2}  Summer
 
-- @categories.each do |category|
-  .row.row-eq-height
-    .col.outline= category.name  
-    .col.outline.required
-      - @fall_courses.where(required: true).where(category_id: category).each do |course|
-        = course.title 
-    .col.outline.elective
-      - @fall_courses.where(required: false).where(category_id: category).each do |course |
-        = course.title  
-    .col.outline.required
-      - @spring_courses.where(required: false).where(category_id: category).each do |course |
-        = course.title  
-    .col.outline.elective
-      - @spring_courses.where(required: false).where(category_id: category).each do |course |
-        = course.title  
-    .col.outline.required
-      - @summer_courses.where(required: false).where(category_id: category).each do |course |
-        = course.title  
-    .col.outline.elective
-      - @summer_courses.where(required: false).where(category_id: category).each do |course |
-        = course.title
-      .w-100
-
+  - @categories.each do |category|
+    %tr
+      %td.category{:width => "8%"}= category.name  
+      %td.required{:width => "18%"}
+        - @fall_courses.where(required: true).where(category_id: category).each do |course|
+          = course.title
+          %br
+      %td.elective{:width => "18%"}
+        - @fall_courses.where(required: false).where(category_id: category).each do |course |
+          = course.title
+          %br
+      %td.required{:width => "18%"}
+        - @spring_courses.where(required: false).where(category_id: category).each do |course |
+          = course.title
+          %br
+      %td.elective{:width => "18%"}
+        - @spring_courses.where(required: false).where(category_id: category).each do |course |
+          = course.title 
+          %br
+      %td.required{:width => "10%"}
+        - @summer_courses.where(required: false).where(category_id: category).each do |course |
+          = course.title 
+          %br
+      %td.elective{:width => "10%"}
+        - @summer_courses.where(required: false).where(category_id: category).each do |course |
+          = course.title
+          %br
 
 %h5= link_to 'New Course', new_course_path
