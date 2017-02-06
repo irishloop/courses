@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   root 'courses#index'
   
+  resources :courses do
+    collection do
+      get 'edit_multiple'
+      post 'update_multiple'
+    end
+  end
+  
   resources :course_faculties
-  resources :courses
   resources :semesters
   resources :professors
   resources :categories

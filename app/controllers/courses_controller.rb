@@ -12,8 +12,17 @@ class CoursesController < ApplicationController
     @summer_courses = @courses.where(semesters: { name: 'Summer'})
   end
 
-  def editmultiple
-    @courses = Course.order('num DESC')
+  def edit_multiple
+    @courses = Course.order('num ASC')
+  end
+
+  def update_multiple
+    @courses = Course.find(params[:course_ids])
+    @courses.each do |course|
+      course.update_attributes!(params[:course].reject { |k,v| v.blank? })
+    end
+    flash[:notice] = "Updated courses!"
+    redirect_to course_path
   end
 
   # GET /courses/1
@@ -78,6 +87,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:num, :title, :required, :professor_id, :category_id)
+      params.require(:course).permit(:num, :title, :required, :offered, :professor_id, :category_id, :semester_id)
     end
 end

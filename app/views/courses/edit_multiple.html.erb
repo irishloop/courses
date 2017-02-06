@@ -1,0 +1,27 @@
+<%= form_for :course, :url => update_multiple_courses_path, :html => { :method => :put } do |f| %>
+  <table>
+    <tr>
+      <th>Num</th>
+      <th>Title</th>
+      <th>Req</th>
+      <th>Off</td>
+      <th>Professor</th>
+      <th>Category</th>
+      <th>Semester</th>
+    </tr>
+
+    <% for course in @courses %>
+      <tr>
+        <td><%= f.hidden_field :id, :value => course.id %>
+        <%= f.text_field :num, :value => course.num, :size => 6 %></td>
+        <td><%= f.text_field :title, :value => course.title, :size => 50 %></td>
+        <td><%= f.check_box :required, :checked => course.required %></td>
+        <td><%= f.check_box :offered, :checked => course.offered %></td>
+        <td><%= f.collection_select :professor_id, Professor.all, :id, :fullname, :include_blank => true, :selected => course.professor_id %></td>
+        <td><%= f.collection_select  :category_id, Category.all, :id, :name, :selected => course.category_id %></td>
+        <td><%= f.collection_select :semester_id, Semester.all, :id, :name, :selected => course.semester_id %></td>
+      </tr>
+      <% end %>
+  </table>
+  <div><%= f.submit "Save Changes" %></div>
+<% end %>

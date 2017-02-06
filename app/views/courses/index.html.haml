@@ -22,7 +22,7 @@
           = link_to course.title, [:edit, course]
           %br
       %td.required{:width => "18%"}
-        - @spring_courses.where(required: false).where(category_id: category).each do |course |
+        - @spring_courses.where(required: true).where(category_id: category).each do |course |
           = link_to course.title, [:edit, course]
           %br
       %td.elective{:width => "18%"}
@@ -30,7 +30,7 @@
           = link_to course.title, [:edit, course]
           %br
       %td.required{:width => "10%"}
-        - @summer_courses.where(required: false).where(category_id: category).each do |course |
+        - @summer_courses.where(required: true).where(category_id: category).each do |course |
           = link_to course.title, [:edit, course]
           %br
       %td.elective{:width => "10%"}
