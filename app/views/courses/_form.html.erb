@@ -27,13 +27,22 @@
   </div>
 
   <div class="field">
+    <%= f.label :offered %>
+    <%= f.check_box :offered %>
+
+  <div class="field">
     <%= f.label :professor_id %>
     <%= f.collection_select :professor_id, Professor.all, :id, :fullname, :include_blank => true, selected: course.professor_id %>
   </div>
 
   <div class="field">
     <%= f.label :category_id %>
-    <%= f.number_field :category_id %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, selected: course.category_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :semester_id %>
+    <%= f.collection_select :semester_id, Semester.all, :id, :name, selected: course.semester_id %>
   </div>
 
   <div class="actions">
