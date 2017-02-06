@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :size => 50 %>
   </div>
 
   <div class="field">
@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= f.label :professor_id %>
-    <%= f.number_field :professor_id %>
+    <%= f.collection_select :professor_id, Professor.all, :id, :fullname, :include_blank => true, selected: course.professor_id %>
   </div>
 
   <div class="field">

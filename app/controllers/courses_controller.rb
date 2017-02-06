@@ -12,6 +12,10 @@ class CoursesController < ApplicationController
     @summer_courses = @courses.where(semesters: { name: 'Summer'})
   end
 
+  def editmultiple
+    @courses = Course.order('num DESC')
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show
