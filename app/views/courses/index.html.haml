@@ -15,27 +15,33 @@
       %td.category{:width => "8%"}= category.name  
       %td.required{:width => "18%"}
         - @fall_courses.where(required: true).where(category_id: category).each do |course|
-          = link_to course.listing, [:edit, course] 
+          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
           %br
+          .faculty= course.faculty_listing
       %td.elective{:width => "18%"}
         - @fall_courses.where(required: false).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course]
+          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
           %br
+          .faculty= course.faculty_listing 
       %td.required{:width => "18%"}
         - @spring_courses.where(required: true).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course]
+          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
           %br
+          .faculty= course.faculty_listing 
       %td.elective{:width => "18%"}
         - @spring_courses.where(required: false).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course]
+          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
           %br
+          .faculty= course.faculty_listing 
       %td.required{:width => "10%"}
         - @summer_courses.where(required: true).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course]
+          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive")
           %br
+          .faculty= course.faculty_listing 
       %td.elective{:width => "10%"}
         - @summer_courses.where(required: false).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course]
+          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive")
           %br
+          .faculty= course.faculty_listing 
 
 %h5= link_to 'New Course', new_course_path

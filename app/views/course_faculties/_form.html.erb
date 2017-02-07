@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= f.label :course_id %>
-    <%= f.number_field :course_id %>
+    <%= f.collection_select :course_id, Course.all, :id, :listing, selected: :course_id %>
   </div>
 
   <div class="field">
     <%= f.label :professor_id %>
-    <%= f.number_field :professor_id %>
+    <%= f.collection_select :professor_id, Professor.all, :id, :fullname, selected: :professor_id %>
   </div>
 
   <div class="actions">
