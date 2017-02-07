@@ -17,12 +17,23 @@ class CoursesController < ApplicationController
   end
 
   def update_multiple
-    @courses = Course.find(params[:course_ids])
+    @courses = Course.all
     @courses.each do |course|
-      course.update_attributes!(params[:course].reject { |k,v| v.blank? })
+      hash = {}
+      hash[:num] = params[:course][course.id.to_s][:num]
+      hash[:title] = params[:course][course.id.to_s][:title]
+      hash[:required] = params[:course][course.id.to_s][:required]
+      hash[:offered] = params[:course][course.id.to_s][:offered]
+      hash[:professor_id] = params[:course][course.id.to_s][:professor_id]
+      hash[:category_id] = params[:course][course.id.to_s][:category_id]
+      hash[:semester_id] = params[:course][course.id.to_s][:semester_id]
+      unless course.update_attributes(hash)
+        flash[:error] = course.errors
+        redirect_to edit_multiple_courses_path
+      end
     end
-    flash[:notice] = "Updated courses!"
-    redirect_to course_path
+    flash[:notice] = "Courses saved successfully!"
+    redirect_to edit_multiple_courses_path
   end
 
   # GET /courses/1
@@ -89,4 +100,6 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:num, :title, :required, :offered, :professor_id, :category_id, :semester_id)
     end
+
+
 end
