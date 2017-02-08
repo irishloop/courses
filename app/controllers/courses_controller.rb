@@ -36,6 +36,12 @@ class CoursesController < ApplicationController
     redirect_to edit_multiple_courses_path
   end
 
+  def get_professors
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show
@@ -69,13 +75,25 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+    if params[:add_professor]
+      @new_faculty = CourseFaculty.new
+      @new_faculty.course_id = @course.id
+      @new_faculty.professor_id = params[:course][:faculty_id]
+      # byebug
+      if @new_faculty.save
+        redirect_to @course, notice: 'Professor added to course'
       else
-        format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        render :edit
+      end
+    else
+      respond_to do |format|
+        if @course.update(course_params)
+          format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+          format.json { render :show, status: :ok, location: @course }
+        else
+          format.html { render :edit }
+          format.json { render json: @course.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       get 'edit_multiple'
       post 'update_multiple'
     end
+    member do
+      get 'get_professors'
+    end
   end
   
   resources :course_faculties

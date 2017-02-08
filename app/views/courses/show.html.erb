@@ -13,16 +13,31 @@
 <p>
   <strong>Required:</strong>
   <%= @course.required %>
+  </p>
+
+<p>
+  <strong>Offered:</strong>
+  <%= @course.offered %>
+  </p>
+
+<p>
+  <strong>Coordinator:</strong>
+  <%= @course.professor.fullname %>
 </p>
 
 <p>
-  <strong>Professor:</strong>
-  <%= @course.professor_id %>
+  <strong>Additional Faculty:</strong>
+  <%= render 'professors', course_faculty: @course.course_faculties %>
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @course.category_id %>
+  <%= @course.category.name %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @course.semester.name %>
 </p>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |

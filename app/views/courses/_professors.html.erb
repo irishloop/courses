@@ -1,0 +1,7 @@
+<% course_faculty.each do |faculty| %>
+  <%= faculty.professor.fullname %>
+  <% if params[:action] == 'edit' %>
+  <small>(<%= link_to 'Remove', course_faculty_path(faculty.id), :method => :delete %>)</small>
+  <% end %>
+  <br />
+<% end %>

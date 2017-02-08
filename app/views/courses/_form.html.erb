@@ -31,8 +31,15 @@
     <%= f.check_box :offered %>
 
   <div class="field">
-    <%= f.label :professor_id %>
-    <%= f.collection_select :professor_id, Professor.all, :id, :fullname, :include_blank => true, selected: course.professor_id %>
+    <%= f.label "Coordinator" %>
+    <%= f.collection_select :professor_id, Professor.all, :id, :fullname, :include_blank => true, selected: course.professor_id %><br />
+  </div>
+
+  <div class="field">
+    <%= f.label "Additional Faculty" %>
+    <%= render 'professors', course_faculty: course.course_faculties %>
+    <%= f.collection_select :faculty_id, Professor.all, :id, :fullname, :include_blank => true, selected: :blank %>
+    <%= f.submit 'Add Professor', name: 'add_professor' %>
   </div>
 
   <div class="field">
