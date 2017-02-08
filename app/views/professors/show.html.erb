@@ -13,6 +13,11 @@
 <p>
   <strong>Status:</strong>
   <%= @professor.status %>
+  </p>
+
+<p>
+  <strong>Currently teaching:</strong><br />
+  <%= render 'courses', professor: @professor %>
 </p>
 
 <%= link_to 'Edit', edit_professor_path(@professor) %> |
