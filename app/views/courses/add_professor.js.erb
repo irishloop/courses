@@ -1,0 +1,1 @@
+$('#course_<%= @course.id %>').hide().before('<%= j render("add_professor", locals: { course: @course }) %>');

@@ -1,0 +1,3 @@
+$('#course_<%= @course.id %>').prev().remove();
+$('#course_<%= @course.id %>').prev().append(', <%= link_to @course_faculty.professor.lastname, @course_faculty.professor %>')
+$('#course_<%= @course.id %>').show();

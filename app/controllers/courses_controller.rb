@@ -10,6 +10,11 @@ class CoursesController < ApplicationController
     @fall_courses = @courses.where(semesters: { name: 'Fall'})
     @spring_courses = @courses.where(semesters: { name: 'Spring'})
     @summer_courses = @courses.where(semesters: { name: 'Summer'})
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit_multiple
@@ -95,6 +100,13 @@ class CoursesController < ApplicationController
           format.json { render json: @course.errors, status: :unprocessable_entity }
         end
       end
+    end
+  end
+
+  def add_professor
+    @course = Course.find(params[:id])
+    respond_to do |format|
+      format.js {render :layout => false}
     end
   end
 

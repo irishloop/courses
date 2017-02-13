@@ -1,0 +1,3 @@
+.faculty
+  %span.facultyList= raw course.faculty.collect{ |prof| link_to prof.lastname, prof}.join(", ")
+  = link_to '(+)', [:add_professor, course], :id => "course_#{course.id}", :remote => 'true'

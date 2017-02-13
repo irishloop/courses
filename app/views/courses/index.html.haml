@@ -16,26 +16,26 @@
       %td.required{:width => "18%"}
         - @fall_courses.where(required: true).where(category_id: category).each do |course|
           = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          .faculty= raw course.faculty.collect { |prof| link_to prof.lastname, prof}.join(", ")
+          = render "professor_list", course: course
       %td.elective{:width => "18%"}
         - @fall_courses.where(required: false).where(category_id: category).each do |course |
           = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          .faculty= raw course.faculty.collect { |prof| link_to prof.lastname, prof}.join(", ")
+          = render "professor_list", course: course
       %td.required{:width => "18%"}
         - @spring_courses.where(required: true).where(category_id: category).each do |course |
           = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          .faculty= raw course.faculty.collect { |prof| link_to prof.lastname, prof}.join(", ")
+          = render "professor_list", course: course
       %td.elective{:width => "18%"}
         - @spring_courses.where(required: false).where(category_id: category).each do |course |
           = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          .faculty= raw course.faculty.collect { |prof| link_to prof.lastname, prof}.join(", ")
+          = render "professor_list", course: course
       %td.required{:width => "10%"}
         - @summer_courses.where(required: true).where(category_id: category).each do |course |
           = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive")
-          .faculty= raw course.faculty.collect { |prof| link_to prof.lastname, prof}.join(", ")
+          = render "professor_list", course: course
       %td.elective{:width => "10%"}
         - @summer_courses.where(required: false).where(category_id: category).each do |course |
           = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive")
-          .faculty= raw course.faculty.collect { |prof| link_to prof.lastname, prof}.join(", ")
+          = render "professor_list", course: course
 
 %h5= link_to 'New Course', new_course_path

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'get_professors'
+      get 'add_professor'
     end
   end
   

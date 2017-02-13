@@ -25,14 +25,16 @@ class CourseFacultiesController < ApplicationController
   # POST /course_faculties.json
   def create
     @course_faculty = CourseFaculty.new(course_faculty_params)
-
+    @course = Course.find(@course_faculty.course_id)
     respond_to do |format|
       if @course_faculty.save
         format.html { redirect_to @course_faculty, notice: 'Course faculty was successfully created.' }
         format.json { render :show, status: :created, location: @course_faculty }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @course_faculty.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

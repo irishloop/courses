@@ -1,0 +1,5 @@
+<%= form_for CourseFaculty.new, remote: true do |f| %>
+  <%= f.hidden_field :course_id, :value => @course.id %>
+  <%= f.collection_select :professor_id, Professor.all, :id, :fullname %>
+  <%= f.submit 'Add' %>
+<% end %>
