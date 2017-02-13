@@ -22,7 +22,9 @@
 
 <p>
   <strong>Coordinator:</strong>
-  <%= @course.professor.fullname %>
+  <% unless @course.professor.nil? %>
+    <%= @course.professor.fullname %>
+  <% end %>
 </p>
 
 <p>
