@@ -14,28 +14,34 @@
     %tr
       %td.category{:width => "8%"}= category.name  
       %td.required{:width => "18%"}
-        - @fall_courses.where(required: true).where(category_id: category).each do |course|
-          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          = render "professor_list", course: course
+        - @fall_courses.where(required: true).where(category_id: category).order(:num).each do |course|
+          .course{:class => (course.offered ? "offered" : "inactive")}
+            = link_to course.listing, [:edit, course]
+            = render "professor_list", course: course
       %td.elective{:width => "18%"}
-        - @fall_courses.where(required: false).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          = render "professor_list", course: course
+        - @fall_courses.where(required: false).where(category_id: category).order(:num).each do |course |
+          .course{:class => (course.offered ? "offered" : "inactive")}
+            = link_to course.listing, [:edit, course]
+            = render "professor_list", course: course
       %td.required{:width => "18%"}
-        - @spring_courses.where(required: true).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          = render "professor_list", course: course
+        - @spring_courses.where(required: true).where(category_id: category).order(:num).each do |course |
+          .course{:class => (course.offered ? "offered" : "inactive")}
+            = link_to course.listing, [:edit, course]
+            = render "professor_list", course: course
       %td.elective{:width => "18%"}
-        - @spring_courses.where(required: false).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive") 
-          = render "professor_list", course: course
+        - @spring_courses.where(required: false).where(category_id: category).order(:num).each do |course |
+          .course{:class => (course.offered ? "offered" : "inactive")}
+            = link_to course.listing, [:edit, course]
+            = render "professor_list", course: course
       %td.required{:width => "10%"}
-        - @summer_courses.where(required: true).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive")
-          = render "professor_list", course: course
+        - @summer_courses.where(required: true).where(category_id: category).order(:num).each do |course |
+          .course{:class => (course.offered ? "offered" : "inactive")}
+            = link_to course.listing, [:edit, course]
+            = render "professor_list", course: course
       %td.elective{:width => "10%"}
-        - @summer_courses.where(required: false).where(category_id: category).each do |course |
-          = link_to course.listing, [:edit, course], :class => (course.offered ? "offered" : "inactive")
-          = render "professor_list", course: course
+        - @summer_courses.where(required: false).where(category_id: category).order(:num).each do |course |
+          .course{:class => (course.offered ? "offered" : "inactive")}
+            = link_to course.listing, [:edit, course]
+            = render "professor_list", course: course
 
 %h5= link_to 'New Course', new_course_path

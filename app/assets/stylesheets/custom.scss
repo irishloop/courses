@@ -88,15 +88,14 @@ p {
     font-size: 0.7em;
     border-style: solid;
     vertical-align: top;
-    a.inactive {
-      text-indent: 8px;
+    .inactive {
+      margin-left: 8px;
       font-style: italic;
       color: gray;
-      display: inline-block;
     }
     .faculty {
       font-size: 0.9em;
-      text-indent: 3px;
+      margin-left: 3px;
     }
   }
 }
